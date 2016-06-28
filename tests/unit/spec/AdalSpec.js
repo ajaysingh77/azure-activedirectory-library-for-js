@@ -229,7 +229,7 @@ describe('Adal', function () {
             token = valToken;
         };
         adal._renewStates = [];
-        adal._user = { userName: 'test@testuser.com' };
+        adal._user = { profile: { 'upn': 'test@testuser.com' }, userName: 'test@domain.com'};
         adal.acquireToken(RESOURCE1, callback);
         expect(adal.callback).toBe(callback);
         expect(storageFake.getItem(adal.CONSTANTS.STORAGE.LOGIN_REQUEST)).toBe('');
@@ -266,7 +266,7 @@ describe('Adal', function () {
         };
 
         adal._renewStates = [];
-        adal._user = { userName: 'test@testuser.com' };
+        adal._user = { profile: { 'upn': 'test@testuser.com' }, userName: 'test@domain.com' };
         adal.acquireToken(RESOURCE1, callback);
         //Simulate second acquire i.e. second service call from Angular.
         adal.acquireToken(RESOURCE1, callback2);
@@ -698,7 +698,7 @@ describe('Adal', function () {
             token = valToken;
         };
         adal._renewStates = [];
-        adal._user = { userName: 'test@testuser.com' };
+        adal._user = { profile: { 'upn': 'test@testuser.com' }, userName: 'test@domain.com' };
         adal.acquireToken(adal.config.clientId, callback);
         expect(storageFake.getItem(adal.CONSTANTS.STORAGE.NONCE_IDTOKEN)).toBe('33333333-3333-4333-b333-333333333333');
         expect(adal.config.state).toBe('33333333-3333-4333-b333-333333333333' + '|' + 'client');
